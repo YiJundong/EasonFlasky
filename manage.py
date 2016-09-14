@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+'''
+删除了邮件验证功能、修改邮箱、修改密码、重设密码，以及互相关注功能的相关代码
+后续分支，会美化前端页面，增加一些页面
+'''
 import os
 from app import create_app, db
 from app.models import User, Role, Permission, Post, Comment
