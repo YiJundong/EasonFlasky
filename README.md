@@ -1,2 +1,5 @@
-# EasonFlasky
+﻿# EasonFlasky
 学习《FlaskWeb开发》，做的第一个简易博客
+
+使用别人的前端模板美化之前 的最终版。
+基本功能都已实现，但是edit功能还有点问题。

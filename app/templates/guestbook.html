@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Flasky - Guestbook{% endblock %}
+
+{% block page_content %}
+
+<h3>登录后才可留言~</h3>
+
+{% if current_user.can(Permission.COMMENT) %}
+<div class="comment-form">
+    {{ wtf.quick_form(form) }}
+</div>
+{% endif %}
+
+<ul class="posts">
+    {% for note in notes %}
+    
+    <li class="post">
+        <div class="post-thumbnail">
+                
+                <img class="img-rounded profile-thumbnail" src="{{ note.author.gravatar(size=40) }}">
+                
+        </div>
+        <div class="post-content">
+            <div class="post-date">{{ moment(note.timestamp).fromNow() }}</div>
+            <div class="post-author">{{ note.author.username }}</a></div>
+            <div class="post-body">{{ note.body }}</div>
+             
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}
