@@ -1,0 +1,73 @@
+{% extends "base2.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Flasky - Post{% endblock %}
+
+{% block page_content %}
+
+<ul class="posts">
+    
+    
+    <li class="post">
+        <div class="post-content">
+            
+            <h3><a href="{{ url_for('.post', id=post.id) }}">{{ post.title }}</a></h3>
+            
+            <div class="post-body">
+                {% if post.body_html %}
+                    {{ post.body_html | safe }}
+                {% else %}
+                    {{ post.body }}
+                {% endif %}
+            </div>            
+            <div class="post-footer">
+
+                {% if current_user == post.author %}
+                <a href="{{ url_for('.edit', id=post.id) }}">
+                    <span class="label label-primary">Edit</span>
+                </a>
+                {% elif current_user.is_administrator() %}
+                <a href="{{ url_for('.edit', id=post.id) }}">
+                    <span class="label label-danger">Edit [Admin]</span>
+                </a>
+                {% endif %}
+                
+                <h6><a href="{{ url_for('.category', tag=post.category_id) }}">Tag:{{ post.category_id }}</a></h6>
+                <p style="float:right"><small><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span style="color:#8C8C8C;">{{ post.timestamp.strftime("%Y-%m-%d %H:%M") }}</span></small></p>
+                <br>
+                <br>
+
+            </div>
+        </div>
+   
+    </li>
+
+    
+</ul>
+
+<!-- Comments -->
+<article class="article">
+        <!-- 多说评论框 start -->
+        <div class="ds-thread" data-thread-key="{{ post.id }}" data-title="{{ post.title }}" data-url="/post/{{ post.id }}">
+        </div>      
+        <!-- 多说评论框 end -->
+
+        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+            var duoshuoQuery = {short_name:"easonblog"};
+                (function() {
+                            var ds = document.createElement('script');
+                            ds.type = 'text/javascript';ds.async = true;
+                            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                            ds.charset = 'UTF-8';
+                            (document.getElementsByTagName('head')[0] 
+                            || document.getElementsByTagName('body')[0]).appendChild(ds);
+                            })();
+        </script>
+        <!-- 多说公共JS代码 end -->           
+</article>
+
+
+
+{% endblock %}

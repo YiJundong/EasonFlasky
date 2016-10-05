@@ -1,0 +1,103 @@
+{% extends "base2.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Flasky{% endblock %}
+
+{% block page_content %}
+
+<div>
+    {% if current_user.can(Permission.WRITE_ARTICLES) %}
+    {{ wtf.quick_form(form) }}
+    {% endif %}
+</div>
+
+
+
+<div class="intro-header" style="background-image: url('/static/pic/index.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
+                <div >
+                	<br>
+                    <h1 style="color:#E7DBDB"><em>Hello, I am Eason</em></h1>
+
+                   
+                    <br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            {% for post in posts %}
+            	<br>
+				<article class="article the-font" style="display:none">
+
+					<a href="/post/{{ post.id }}"><h3 style="color:#34495E">{{ post.title }}</h3></a>
+					<p><small><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span style="color:#8C8C8C;">{{ post.timestamp.strftime("%Y-%m-%d %H:%M")}}</span></small></p>	
+
+					<p>
+						{% if post.body_html %}
+                            {{ post.body_html|safe|truncate(300, True)}}
+                        {% else %}
+                            {{ post.body|truncate(300, True)}}
+                        {% endif %}
+					</p>
+			
+					<div style="border-top:1px solid #EBEBEB;padding:10px 5px;margin-top:20px;">
+						<p><a href="/category/{{ post.category_id }}"><span class="label label-default text-left"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{ post.category_id }}</span>
+
+                        {% if current_user == post.author %}
+                            <a href="{{ url_for('.edit', id=post.id) }}">
+                                <span class="label label-primary">Edit</span>
+                            </a>
+                        {% elif current_user.is_administrator() %}
+                            <a href="{{ url_for('.edit', id=post.id) }}">
+                                <span class="label label-danger">Edit [Admin]</span>
+                            </a>
+                        {% endif %}
+				
+						<a href="/post/{{ post.id }}" style="float:right"><button class="btn  btn-primary btn-wide text-right"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> 阅读全文</button></a></p>
+					</div>
+				</article>	
+			{% endfor %}
+
+			{% if pagination %}
+			{{ macros.pagination_widget(pagination,'.index') }}	
+      		{% endif %}
+        </div>
+
+        <div class="col-md-3">
+        	<br>   
+            <div class="share mrl the-font" style="background-color:#FFF;box-shadow:5px 5px 20px #CCC;width:260px;">
+                <div style="padding:10px;">
+                    <div style="border-bottom:1px solid #DAD4D4;;padding:10px 10px;">
+                        <h3><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&emsp;标 签</h3>
+                    </div>
+
+                    <ul>
+                        {% for category in categorys %}
+                        <li class="presentation" style="padding-top:0px;"><a href="/category/{{ category.tag }}" ><p><span style="font-size:15px;">> {{ category.tag|upper }}</span></p></a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}
