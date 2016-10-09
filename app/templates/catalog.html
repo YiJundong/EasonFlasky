@@ -1,0 +1,29 @@
+{% extends "base2.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}
+博文目录
+{% endblock %}
+
+{% block page_content %}
+
+<ul class="posts">
+    {% for post in posts %}
+    <li class="post">
+        
+        <div>
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><a href="{{ url_for('.post', id=post.id)}}" style="color:#000000;" >&emsp;{{ post.title }}</a>
+
+            <a style="float:right"><small><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span style="color:#8C8C8C;">{{ post.timestamp.strftime("%Y-%m-%d %H:%M") }}</span></small></a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.index') }}
+</div>
+{% endif %}
+
+{% endblock %}

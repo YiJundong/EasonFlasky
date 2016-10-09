@@ -1,0 +1,103 @@
+{% extends  "base2.html" %}
+
+{% block title %}
+关于我
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+<div class="row">
+	<div class="col-md-12">
+		<article class="article the-font">
+			<div class="comtainer">
+				<div class="row">
+					<div class="col-md-3">
+						<br>
+
+						<div align="center"><img src="/static/pic/about.jpg" style="height:220px;width:220px;border-radius:110px;display:block;text-align:center" align="center"></div>
+						<br>
+						<p class="lead text-center"><em>Eason</em></p>
+						
+
+						<hr>
+						<ul>
+							<li>GITHUB:<a href="https://github.com/yijundong" target="_blank">点我</a></li>
+							<li>WEIBO:<a href="http://weibo.com/2277966967/profile" target="_blank">微博</a></li>
+						</ul>
+						<hr>	
+					</div>
+					<div class="col-md-9">
+						<h3>基本信息：</h3>
+						<hr>
+						<ul>
+							<li>姓名：伊俊东</li>
+							<li>生日：1991/3</li>
+							<li>居住地：福州</li>
+							<li>学历：2009.09 - 2013.06&emsp;&emsp;中南大学(985)&emsp;&emsp;材料科学与工程学院(本科)</li>
+							&#10;&emsp;&emsp;&emsp;2013.09 - 至今&emsp;&emsp;&emsp;中国科学院/福建物质结构研究所(硕博连读)&emsp;&emsp;主动退学中...
+						</ul>
+						
+						<h3>个人项目：</h3>
+						<hr>
+						<ul>
+							<li>基于Flask创建的个人博客，已上线：<a href="https://github.com/yijundong/easonflasky" target="_blank">Github</a>,&emsp;<a href="https://easonblog.herokuapp.com" target="_blank">博客地址</a></li>
+							<li>学习Django框架写的博客项目，建设中：<a href="https://github.com/yijundong/Django_Blog" target="_blank">Github</a></li>
+						</ul>
+						<h3>相关技能：</h3>
+						<hr>
+						<ul>
+							<li>使用过Flask和Django框架，知道两者的优缺点</li>
+							<li>了解MVC,MTV设计模式</li>
+							<li>会使用Bootstrap美化前端界面，了解响应式布局</li>
+							<li>平时使用Git，具有版本控制意识</li>
+							<li>项目中使用SQLite，了解关系型数据库</li>
+							<li>了解HTTP协议</li>
+						</ul>
+						
+						<h3>自我评价：</h3>
+						<hr>
+						<ul>
+							<li><strong>优点</strong>：自学能力强，善于动手解决问题</li>
+							<li><strong>缺点</strong>：没有CS基础</li>		
+						</ul>
+						<br><br><br>						
+					</div>
+				</div>
+					
+			</div>
+			
+		</article>
+			
+			
+	<article class="article">
+		<!-- 多说评论框 start -->
+		<div class="ds-thread" data-thread-key="about" data-title="MyInfomation" data-url="/about">
+		</div>		
+		<!-- 多说评论框 end -->
+
+		<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+		<script type="text/javascript">
+			var duoshuoQuery = {short_name:"easonblog"};
+				(function() {
+							var ds = document.createElement('script');
+							ds.type = 'text/javascript';ds.async = true;
+							ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+							ds.charset = 'UTF-8';
+							(document.getElementsByTagName('head')[0] 
+		 					|| document.getElementsByTagName('body')[0]).appendChild(ds);
+							})();
+		</script>
+		<!-- 多说公共JS代码 end -->
+
+		  	
+  	</article>
+  	
+</div>
+</div>
+</div>
+
+
+
+
+{% endblock %}
