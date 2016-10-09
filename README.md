@@ -9,8 +9,8 @@ heroku最终部署版本。
 1.开启虚拟环境
 
 2.python manage.py shell
->>db.create_all()
->>Role.insert_roles()
->>Ctrl+Z
++ db.create_all()
++ Role.insert_roles()
++ Ctrl+Z
 
 3.heroku local web -f procfile.windows
